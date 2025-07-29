@@ -9,7 +9,7 @@ export interface Tool {
   path: string;
   Icon: React.FC<{ className?: string; style?: CSSProperties }>;
   color: string;
-  category: 'Images' | 'Creativity' | 'Builders' | 'Motion' | 'Coding';
+  category: 'Images' | 'Creativity' | 'Builders' | 'Motion' | 'Coding' | 'Social';
   isComingSoon?: boolean;
   isNew?: boolean;
   isBeta?: boolean;

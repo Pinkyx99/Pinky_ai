@@ -1,5 +1,7 @@
 
 
+
+
 import type { Tool } from '../types';
 import {
   FaceSmileIcon, PhotoIcon, ImageIcon, ImageMagicIcon, TShirtIcon, MusicNoteIcon,
@@ -8,6 +10,10 @@ import {
   ObjectRemoverIcon,
   SwatchIcon,
   PencilIcon,
+  UserIcon,
+  UsersIcon,
+  QrCodeIcon,
+  DownloadIcon,
 } from '../components/ui/Icons';
 
 export const TOOLS: Tool[] = [
@@ -20,10 +26,17 @@ export const TOOLS: Tool[] = [
   { id: 'video-face-swapper', title: 'Video Face Swapper', description: 'Swap faces in video clips', path: '/video-face-swapper', Icon: FaceSmileIcon, category: 'Images', color: '#8b5cf6' },
   { id: 'image-stylizer', title: 'Image Stylizer', description: 'Transfer the style of one image to another', path: '/image-stylizer', Icon: SwatchIcon, category: 'Images', color: '#8b5cf6' },
   { id: 'photo-colorizer', title: 'Photo Colorizer', description: 'Bring B&W photos to life with color', path: '/photo-colorizer', Icon: SwatchIcon, category: 'Images', color: '#8b5cf6' },
+  { id: 'profile-photo-maker', title: 'Image Editor', description: 'A simple online image editor to make quick adjustments.', path: '/profile-photo-maker', Icon: PencilIcon, category: 'Images', color: '#8b5cf6', isNew: true },
+  { id: 'bg-remover-backup', title: 'Background Remover (Backup)', description: 'Alternative tool to instantly remove image backgrounds.', path: '/background-remover-backup', Icon: PhotoIcon, category: 'Images', color: '#8b5cf6', isNew: true },
+  { id: 'qr-code-generator', title: 'QR Code Generator', description: 'Create QR codes for URLs, text, and more.', path: '/qr-code-generator', Icon: QrCodeIcon, category: 'Images', color: '#8b5cf6', isNew: true },
   
   // Builders
   { id: 'virtual-try-on', title: 'Virtual Try-On', description: 'See how clothes look on a model', path: '/virtual-try-on', Icon: TShirtIcon, category: 'Builders', color: '#8b5cf6' },
   
+  // Social
+  { id: 'social-tools', title: 'Social Media Tools', description: 'A suite of tools for social media management.', path: '/social-tools', Icon: UsersIcon, category: 'Social', color: '#8b5cf6', isNew: true },
+  { id: 'social-media-downloader', title: 'Social Media Downloader', description: 'Download videos and photos from social media.', path: '/social-media-downloader', Icon: DownloadIcon, category: 'Social', color: '#8b5cf6', isNew: true },
+
   // Coding
   { id: 'anycoder', title: 'AnyCoder', description: 'Advanced AI coding assistant.', path: '/anycoder', Icon: CodeBracketIcon, category: 'Coding', color: '#8b5cf6' },
   { id: 'instant-coder', title: 'Instant Coder', description: 'Get code snippets instantly from a prompt', path: '/instant-coder', Icon: CodeBracketIcon, category: 'Coding', color: '#8b5cf6' },

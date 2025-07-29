@@ -1,5 +1,9 @@
 
 
+
+
+
+
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
@@ -24,6 +28,11 @@ import { QwenCoderPage } from './pages/QwenCoderPage';
 import { VideoFaceSwapperPage } from './pages/VideoFaceSwapperPage';
 import { DoodleAnimatorPage } from './pages/DoodleAnimatorPage';
 import { GeminiCoDrawingPage } from './pages/GeminiCoDrawingPage';
+import { ProfilePhotoMakerPage } from './pages/ProfilePhotoMakerPage';
+import { SocialToolsPage } from './pages/SocialToolsPage';
+import { BackgroundRemoverBackupPage } from './pages/BackgroundRemoverBackupPage';
+import { QrCodeGeneratorPage } from './pages/QrCodeGeneratorPage';
+import { SocialMediaDownloaderPage } from './pages/SocialMediaDownloaderPage';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -48,6 +57,11 @@ const AnimatedRoutes = () => {
                 <Route path="/video-face-swapper" element={<VideoFaceSwapperPage />} />
                 <Route path="/doodle-animator" element={<DoodleAnimatorPage />} />
                 <Route path="/gemini-codrawing" element={<GeminiCoDrawingPage />} />
+                <Route path="/profile-photo-maker" element={<ProfilePhotoMakerPage />} />
+                <Route path="/social-tools" element={<SocialToolsPage />} />
+                <Route path="/background-remover-backup" element={<BackgroundRemoverBackupPage />} />
+                <Route path="/qr-code-generator" element={<QrCodeGeneratorPage />} />
+                <Route path="/social-media-downloader" element={<SocialMediaDownloaderPage />} />
             </Routes>
         </AnimatePresence>
     );

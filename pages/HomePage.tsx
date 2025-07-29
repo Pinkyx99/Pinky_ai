@@ -1,9 +1,10 @@
 
 
-import React from 'react';
+
+import React, { useEffect, useRef } from 'react';
 import { ToolCard } from '../components/ui/ToolCard';
 import { TOOLS } from '../data/tools';
-import { motion } from 'framer-motion';
+import { motion, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Common';
 import { GithubIcon, InstagramIcon, SnapchatIcon, StarIcon } from '../components/ui/Icons';
@@ -114,6 +115,58 @@ const ToolOfTheDayCard: React.FC<{ tool: Tool }> = ({ tool }) => {
     );
 };
 
+const AnimatedCounter = ({ to }: { to: number }) => {
+    const nodeRef = useRef<HTMLSpanElement>(null);
+
+    useEffect(() => {
+        const node = nodeRef.current;
+        if (!node) return;
+
+        const controls = animate(0, to, {
+            duration: 2.5,
+            ease: "easeOut",
+            onUpdate(value) {
+                node.textContent = Math.round(value).toString();
+            }
+        });
+
+        return () => controls.stop();
+    }, [to]);
+
+    return <span ref={nodeRef}>0</span>;
+}
+
+
+const ToolCounter = () => {
+    const totalTools = TOOLS.filter(t => !t.isComingSoon).length;
+
+    return (
+        <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+            className="my-16 md:my-24"
+        >
+            <div className="relative inline-block text-center p-6 md:p-8 bg-gray-900/50 rounded-2xl border border-white/10 shadow-lg shadow-purple-900/40 backdrop-blur-sm">
+                <div 
+                    className="absolute -inset-px rounded-2xl z-0" 
+                    style={{
+                        background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.3), transparent 70%)',
+                        filter: 'blur(20px)',
+                        animation: 'pulse 4s infinite ease-in-out'
+                    }}
+                />
+                <div className="relative z-10 flex flex-col items-center">
+                     <p className="text-base md:text-lg font-medium text-gray-300">Active Tools on Pinky AI</p>
+                     <div className="text-6xl md:text-7xl font-black text-white tracking-tighter" style={{ textShadow: '0 0 20px rgba(192, 132, 252, 0.7)' }}>
+                        <AnimatedCounter to={totalTools} />
+                     </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 
 export const HomePage = () => {
   const pageMotionProps = {
@@ -170,6 +223,10 @@ export const HomePage = () => {
         <HeroGraphic />
 
     </div>
+
+    <div className="flex justify-center">
+        <ToolCounter />
+    </div>
     
     {toolOfTheDay && 
         <div className="my-16">
@@ -198,16 +255,16 @@ export const HomePage = () => {
             <h3 className="font-bold text-xl text-white mb-3">Usage Policy and Disclaimer</h3>
             <div className="text-sm text-gray-400 space-y-3 text-left">
                 <p>
-                    Pinky AI serves as a curated directory and interface for accessing various third-party AI models and tools, primarily hosted on Hugging Face Spaces. This platform provides a unified and convenient way to explore and interact with these tools through embedded iframes.
+                    Pinky AI serves as a curated directory and interface for accessing various third-party AI models and utility tools. This platform provides a unified and convenient way to explore and interact with these tools through embedded iframes.
                 </p>
                 <p>
-                    <strong>Third-Party Services:</strong> Please be aware that all AI tools featured on this website are developed and maintained by their respective creators. Pinky AI is not responsible for the functionality, performance, content output, or data privacy practices of these third-party services.
+                    <strong>Third-Party Services:</strong> Please be aware that the tools featured on this website are developed and hosted by their respective creators. Pinky AI embeds content from various platforms including, but not limited to, <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Hugging Face</a>, <a href="https://100freeonlinetools.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">100freeonlinetools.vercel.app</a>, and <a href="https://getindevice.com/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">getindevice.com</a>. Pinky AI is not responsible for the functionality, performance, content output, or data privacy practices of these external services.
                 </p>
                 <p>
-                    <strong>Terms of Use:</strong> By using any tool on this platform, you are subject to the terms of service, acceptable use policies, and privacy policies of the underlying Hugging Face Space and its creators. We strongly encourage you to review these policies on their respective pages before use. Pinky AI does not store any data you input into these services.
+                    <strong>Terms of Use:</strong> By using any tool on this platform, you are subject to the terms of service, acceptable use policies, and privacy policies of the original tool's website. We strongly encourage you to review these policies on their respective pages before use. Pinky AI does not store any data you input into these services.
                 </p>
                 <p>
-                    <strong>No Warranty:</strong> The tools are provided "as is" without any warranty of any kind. We do not guarantee the accuracy, reliability, or suitability of the content generated by these AI models.
+                    <strong>No Warranty:</strong> The tools are provided "as is" without any warranty of any kind. We do not guarantee the accuracy, reliability, or suitability of the content generated or the services provided by these third-party tools.
                 </p>
             </div>
         </div>
