@@ -1,14 +1,18 @@
 
 
 
-import React, { useEffect, useRef } from 'react';
+
+
+
+
+import React, { useEffect, useRef, useState } from 'react';
 import { ToolCard } from '../components/ui/ToolCard';
 import { TOOLS } from '../data/tools';
 import { motion, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Common';
 import { GithubIcon, InstagramIcon, SnapchatIcon, StarIcon } from '../components/ui/Icons';
-import { Tool } from '../types';
+import { Tool, SuperCategory } from '../types';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -169,6 +173,14 @@ const ToolCounter = () => {
 
 
 export const HomePage = () => {
+  const [activeSuperCategory, setActiveSuperCategory] = useState<'All' | SuperCategory>('All');
+
+  const superCategories: Array<'All' | SuperCategory> = ['All', 'AI Tools', 'Utilities', 'Converters', 'Social'];
+
+  const filteredTools = TOOLS.filter(tool => 
+      activeSuperCategory === 'All' || tool.superCategory === activeSuperCategory
+  );
+    
   const pageMotionProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
@@ -236,13 +248,29 @@ export const HomePage = () => {
 
 
        <div id="tools-section" className="pt-16">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="mb-8 flex flex-wrap items-center justify-center gap-2">
+            {superCategories.map(category => (
+                <button
+                    key={category}
+                    onClick={() => setActiveSuperCategory(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                        activeSuperCategory === category
+                            ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30'
+                            : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/70'
+                    }`}
+                >
+                    {category}
+                </button>
+            ))}
+        </motion.div>
+
          <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {TOOLS.map((tool) => (
+            {filteredTools.map((tool) => (
                 <motion.div key={tool.id} variants={itemVariants}>
                     <ToolCard tool={tool} />
                 </motion.div>
@@ -258,7 +286,7 @@ export const HomePage = () => {
                     Pinky AI serves as a curated directory and interface for accessing various third-party AI models and utility tools. This platform provides a unified and convenient way to explore and interact with these tools through embedded iframes.
                 </p>
                 <p>
-                    <strong>Third-Party Services:</strong> Please be aware that the tools featured on this website are developed and hosted by their respective creators. Pinky AI embeds content from various platforms including, but not limited to, <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Hugging Face</a>, <a href="https://100freeonlinetools.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">100freeonlinetools.vercel.app</a>, and <a href="https://getindevice.com/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">getindevice.com</a>. Pinky AI is not responsible for the functionality, performance, content output, or data privacy practices of these external services.
+                    <strong>Third-Party Services:</strong> Please be aware that the tools featured on this website are developed and hosted by their respective creators. Pinky AI embeds content from various platforms including, but not limited to, <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Hugging Face</a>, <a href="https://100freeonlinetools.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">100freeonlinetools.vercel.app</a>, <a href="https://vidsyoutube.com/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">vidsyoutube.com</a>, <a href="https://seostudio.tools/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">seostudio.tools</a>, and <a href="https://vheer.com/" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">vheer.com</a>. Pinky AI is not responsible for the functionality, performance, content output, or data privacy practices of these external services.
                 </p>
                 <p>
                     <strong>Terms of Use:</strong> By using any tool on this platform, you are subject to the terms of service, acceptable use policies, and privacy policies of the original tool's website. We strongly encourage you to review these policies on their respective pages before use. Pinky AI does not store any data you input into these services.

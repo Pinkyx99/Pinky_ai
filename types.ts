@@ -2,14 +2,15 @@
 
 import type { ReactNode, CSSProperties } from 'react';
 
+export type SuperCategory = 'AI Tools' | 'Utilities' | 'Social' | 'Converters';
+
 export interface Tool {
   id: string;
   title: string;
   description: string;
   path: string;
   Icon: React.FC<{ className?: string; style?: CSSProperties }>;
-  color: string;
-  category: 'Images' | 'Creativity' | 'Builders' | 'Motion' | 'Coding' | 'Social';
+  superCategory: SuperCategory;
   isComingSoon?: boolean;
   isNew?: boolean;
   isBeta?: boolean;

@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { LogoIcon, XMarkIcon, MagnifyingGlassIcon } from './Icons';
@@ -7,10 +8,8 @@ import { TOOLS } from '../../data/tools';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
-const originalCategories = Object.keys(TOOLS.reduce<Record<string, Tool[]>>((acc, tool) => {
-    (acc[tool.category] = acc[tool.category] || []).push(tool);
-    return acc;
-}, {}));
+const originalSuperCategories = Array.from(new Set(TOOLS.map(t => t.superCategory)));
+
 
 // --- Desktop Sidebar ---
 const DesktopSidebar: React.FC = () => {
@@ -29,11 +28,11 @@ const DesktopSidebar: React.FC = () => {
     );
 
     const filteredGroupedTools = filteredTools.reduce<Record<string, Tool[]>>((acc, tool) => {
-        (acc[tool.category] = acc[tool.category] || []).push(tool);
+        (acc[tool.superCategory] = acc[tool.superCategory] || []).push(tool);
         return acc;
     }, {});
     
-    const filteredCategories = originalCategories.filter(category => filteredGroupedTools[category]);
+    const filteredCategories = originalSuperCategories.filter(category => filteredGroupedTools[category]);
 
     return (
         <motion.aside
@@ -171,11 +170,11 @@ const MobileSidebar: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isO
     );
 
     const filteredGroupedTools = filteredTools.reduce<Record<string, Tool[]>>((acc, tool) => {
-        (acc[tool.category] = acc[tool.category] || []).push(tool);
+        (acc[tool.superCategory] = acc[tool.superCategory] || []).push(tool);
         return acc;
     }, {});
 
-    const filteredCategories = originalCategories.filter(category => filteredGroupedTools[category]);
+    const filteredCategories = originalSuperCategories.filter(category => filteredGroupedTools[category]);
     
     const backdropMotionProps = {
         initial: { opacity: 0 },

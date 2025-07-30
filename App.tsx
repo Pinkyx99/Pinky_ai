@@ -17,6 +17,7 @@ import { MenuIcon, LogoIcon } from './components/ui/Icons';
 import { KolorsImageToImagePage } from './pages/KolorsImageToImagePage';
 import { VirtualTryOnPage } from './pages/VirtualTryOnPage';
 import { TextToSongPage } from './pages/TextToSongPage';
+import { ImageGeneratorPage } from './pages/ImageGeneratorPage';
 import { FluxImageGeneratorPage } from './pages/FluxImageGeneratorPage';
 import { AnyCoderPage } from './pages/AnyCoderPage';
 import { AiChatPage } from './pages/AiChatPage';
@@ -29,10 +30,28 @@ import { VideoFaceSwapperPage } from './pages/VideoFaceSwapperPage';
 import { DoodleAnimatorPage } from './pages/DoodleAnimatorPage';
 import { GeminiCoDrawingPage } from './pages/GeminiCoDrawingPage';
 import { ProfilePhotoMakerPage } from './pages/ProfilePhotoMakerPage';
-import { SocialToolsPage } from './pages/SocialToolsPage';
 import { BackgroundRemoverBackupPage } from './pages/BackgroundRemoverBackupPage';
 import { QrCodeGeneratorPage } from './pages/QrCodeGeneratorPage';
-import { SocialMediaDownloaderPage } from './pages/SocialMediaDownloaderPage';
+import { YouTubeDownloaderPage } from './pages/YouTubeDownloaderPage';
+import { InstagramDownloaderPage } from './pages/InstagramDownloaderPage';
+import { TwitterDownloaderPage } from './pages/TwitterDownloaderPage';
+import { TikTokDownloaderPage } from './pages/TikTokDownloaderPage';
+import { YouTubeThumbnailDownloaderPage } from './pages/YouTubeThumbnailDownloaderPage';
+import { WebpToJpgPage } from './pages/WebpToJpgPage';
+import { JpgToPngPage } from './pages/JpgToPngPage';
+import { PngToJpgPage } from './pages/PngToJpgPage';
+import { VideoToTextGeneratorPage } from './pages/VideoToTextGeneratorPage';
+import { VideoToAnimeGeneratorPage } from './pages/VideoToAnimeGeneratorPage';
+import { AudioSilenceRemoverPage } from './pages/AudioSilenceRemoverPage';
+import { BackgroundChangerPage } from './pages/BackgroundChangerPage';
+import { TextBehindImagePage } from './pages/TextBehindImagePage';
+import { AiFoodGeneratorPage } from './pages/AiFoodGeneratorPage';
+import { ActionFigureGeneratorPage } from './pages/ActionFigureGeneratorPage';
+import { AnimeArtGeneratorPage } from './pages/AnimeArtGeneratorPage';
+import { AiCarGeneratorPage } from './pages/AiCarGeneratorPage';
+import { FurryArtGeneratorPage } from './pages/FurryArtGeneratorPage';
+import { HeadshotGeneratorPage } from './pages/HeadshotGeneratorPage';
+import { ImageToVideoPage } from './pages/ImageToVideoPage';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -41,7 +60,8 @@ const AnimatedRoutes = () => {
         <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/image-generator" element={<FluxImageGeneratorPage />} />
+                <Route path="/image-generator" element={<ImageGeneratorPage />} />
+                <Route path="/image-generator-flux" element={<FluxImageGeneratorPage />} />
                 <Route path="/object-changer" element={<ObjectChangerPage />} />
                 <Route path="/background-remover" element={<BackgroundRemoverPage />} />
                 <Route path="/face-swapper" element={<FaceSwapperPage />} />
@@ -56,12 +76,30 @@ const AnimatedRoutes = () => {
                 <Route path="/qwen-coder" element={<QwenCoderPage />} />
                 <Route path="/video-face-swapper" element={<VideoFaceSwapperPage />} />
                 <Route path="/doodle-animator" element={<DoodleAnimatorPage />} />
+                <Route path="/image-to-video" element={<ImageToVideoPage />} />
                 <Route path="/gemini-codrawing" element={<GeminiCoDrawingPage />} />
                 <Route path="/profile-photo-maker" element={<ProfilePhotoMakerPage />} />
-                <Route path="/social-tools" element={<SocialToolsPage />} />
                 <Route path="/background-remover-backup" element={<BackgroundRemoverBackupPage />} />
                 <Route path="/qr-code-generator" element={<QrCodeGeneratorPage />} />
-                <Route path="/social-media-downloader" element={<SocialMediaDownloaderPage />} />
+                <Route path="/yt-video-downloader" element={<YouTubeDownloaderPage />} />
+                <Route path="/youtube-thumbnail-downloader" element={<YouTubeThumbnailDownloaderPage />} />
+                <Route path="/instagram-downloader" element={<InstagramDownloaderPage />} />
+                <Route path="/twitter-downloader" element={<TwitterDownloaderPage />} />
+                <Route path="/tiktok-downloader" element={<TikTokDownloaderPage />} />
+                <Route path="/webp-to-jpg" element={<WebpToJpgPage />} />
+                <Route path="/jpg-to-png" element={<JpgToPngPage />} />
+                <Route path="/png-to-jpg" element={<PngToJpgPage />} />
+                <Route path="/video-to-text-generator" element={<VideoToTextGeneratorPage />} />
+                <Route path="/video-to-anime-generator" element={<VideoToAnimeGeneratorPage />} />
+                <Route path="/audio-silence-remover" element={<AudioSilenceRemoverPage />} />
+                <Route path="/ai-background-changer" element={<BackgroundChangerPage />} />
+                <Route path="/text-behind-image" element={<TextBehindImagePage />} />
+                <Route path="/ai-food-generator" element={<AiFoodGeneratorPage />} />
+                <Route path="/action-figure-generator" element={<ActionFigureGeneratorPage />} />
+                <Route path="/anime-art-generator" element={<AnimeArtGeneratorPage />} />
+                <Route path="/ai-car-generator" element={<AiCarGeneratorPage />} />
+                <Route path="/furry-art-generator" element={<FurryArtGeneratorPage />} />
+                <Route path="/headshot-generator" element={<HeadshotGeneratorPage />} />
             </Routes>
         </AnimatePresence>
     );
